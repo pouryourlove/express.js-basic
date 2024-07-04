@@ -1,17 +1,14 @@
-import express from 'express'
+import express from 'express';
+import {allStudents,newStudent,updateStudent,deleteStudent} from '../controllers/student.js'
 const router = express.Router()
 
-router.get('/all',(req,res) => {
-    res.send('all students')
-})
-router.post('/create',(req,res) => {
-    res.send('sign in new students')
-})
-router.put('/update',(req,res) => {
-    res.send('update students id')
-})
-router.delete('/delete',(req,res) => {
-    res.send('remove students')
-})
+// GET localhost:PORT/students/all
+router.get('/all',allStudents)
+// POST localhost:PORT/students/create
+router.post('/create',newStudent)
+// PUT localhost:PORT/students/update
+router.put('/update',updateStudent)
+// DELETE localhost:PORT/students/delete
+router.delete('/delete',deleteStudent)
 
 export default router;

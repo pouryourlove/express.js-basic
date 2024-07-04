@@ -6,9 +6,12 @@
 // basic route /
 
 import express from 'express'
+import students from './routes/student.js'
 // import students from './routes/student.js'
 // import teachers from './routes/teacher.js'
 const app = express() //create server
+
+app.use("/students", students)
 
 // app.use('/students', students);
 // app.use('/teachers', teachers);
@@ -20,9 +23,24 @@ const app = express() //create server
 //     res.send(`iphone ${model} pro max`)
 // })
 
-app.get('/product/:category/:id', (req, res) => {
-    const {category, id} = req.params;
-    res.send(`product category (${category}) & product id (${id})`)
+// app.get('/product/:category/:id', (req, res) => {
+//     const {category, id} = req.params;
+//     res.send(`product category (${category}) & product id (${id})`)
+// })
+
+// app.get("/product/order/:day/:month/:year", (req, res) => {
+//   const { day, month, year} = req.params;
+//   res.send(`product was ordered on: ${day}/${month}/${year}`);
+// });
+
+app.param("id", (req, res, next, id) => {
+    console.log(`id:${id}`)
+    next()
+})
+
+app.get('/user/:id', (req, res) => {
+    console.log('This is user id path')
+    res.send('response is ok')
 })
 
 
