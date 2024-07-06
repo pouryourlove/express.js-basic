@@ -6,6 +6,7 @@
 // basic route /
 
 import express from 'express'
+import products from './products.js'
 // import students from './routes/student.js'
 // import students from './routes/student.js'
 // import teachers from './routes/teacher.js'
@@ -13,11 +14,16 @@ const app = express() //create server
 
 // Query Stirng ?& (part of url from client to server)
 // How we get data from the client
-app.get('/product', (req, res) => {
-    // res.send(`Response ok ${req.query.category}`)
-    const { category, id } = req.query;
+// app.get('/product', (req, res) => {
+//     // res.send(`Response ok ${req.query.category}`)
+//     const { category, id } = req.query;
 
-    res.send(`Product Category: ${category} & Product ID: ${id}`)
+//     res.send(`Product Category: ${category} & Product ID: ${id}`)
+// })
+
+//JSON (FROM SERVER TO CLIENT)
+app.get('/products', (req, res) => {
+    res.json(products)
 })
 
 // app.use("/students", students)
@@ -42,15 +48,15 @@ app.get('/product', (req, res) => {
 //   res.send(`product was ordered on: ${day}/${month}/${year}`);
 // });
 
-app.param("id", (req, res, next, id) => {
-    console.log(`id:${id}`)
-    next()
-})
+// app.param("id", (req, res, next, id) => {
+//     console.log(`id:${id}`)
+//     next()
+// })
 
-app.get('/user/:id', (req, res) => {
-    console.log('This is user id path')
-    res.send('response is ok')
-})
+// app.get('/user/:id', (req, res) => {
+//     console.log('This is user id path')
+//     res.send('response is ok')
+// })
 
 
 //http methods
