@@ -6,12 +6,21 @@
 // basic route /
 
 import express from 'express'
-import students from './routes/student.js'
+// import students from './routes/student.js'
 // import students from './routes/student.js'
 // import teachers from './routes/teacher.js'
 const app = express() //create server
 
-app.use("/students", students)
+// Query Stirng ?& (part of url from client to server)
+// How we get data from the client
+app.get('/product', (req, res) => {
+    // res.send(`Response ok ${req.query.category}`)
+    const { category, id } = req.query;
+
+    res.send(`Product Category: ${category} & Product ID: ${id}`)
+})
+
+// app.use("/students", students)
 
 // app.use('/students', students);
 // app.use('/teachers', teachers);
