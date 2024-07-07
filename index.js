@@ -6,11 +6,39 @@
 // basic route /
 
 import express from 'express'
-import products from './products.js'
+import route from './routes/route.js'
+import bodyParser from 'body-parser'
+
+// import path from 'path'
+// import userCredentials from './middlewares/logs.js'
+// import products from './products.js'
 // import students from './routes/student.js'
 // import students from './routes/student.js'
 // import teachers from './routes/teacher.js'
 const app = express() //create server
+
+
+app.set('view engine', "ejs") //tell expreess.js we are running ejs
+// app.use(express.static(join(process.cwd(),"public")));
+app.use("/", route);
+app.use(bodyParser.json());
+
+// app.post("/post", (req, res) => {
+//     res.send("data posted")
+// })
+
+app.post("/post", (req, res) => {
+    const { name, nationality, age} = req.body
+    res.send(`${name}, ${nationality}, ${age}`)
+})
+
+// app.use(express.static('./public'))
+
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(process.cwd(), './public/index.html'))//current working directory and join it with the second
+// })
+
+
 
 // Query Stirng ?& (part of url from client to server)
 // How we get data from the client
@@ -21,10 +49,38 @@ const app = express() //create server
 //     res.send(`Product Category: ${category} & Product ID: ${id}`)
 // })
 
+
 //JSON (FROM SERVER TO CLIENT)
-app.get('/products', (req, res) => {
-    res.json(products)
-})
+// app.get('/products', (req, res) => {
+//     res.json(products)
+// })
+
+//middleware function
+//(pass the function in the middle inside the reqest and response cycle)
+// function(req, res, next){} we put this funciton in the middle
+
+// app.use(userCredentials)
+
+// app.get("/",(req, res) => {
+//   res.send('<h1>hello admin </h1>')
+// });
+
+// app.get("/about", (req, res) => {
+//   res.send("<h1>about section </h1>");
+// });
+
+// app.get("/contact", (req, res) => {
+//   res.send("<h1>contact page </h1>");
+// });
+
+// request -> middleware -> response
+
+
+
+
+
+
+
 
 // app.use("/students", students)
 
